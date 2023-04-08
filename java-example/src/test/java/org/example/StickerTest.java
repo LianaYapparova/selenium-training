@@ -31,7 +31,7 @@ public class StickerTest {
     driver.get("http://localhost/litecart/en/");
     List<WebElement> webElementList = driver.findElements(By.className("product"));
     IntStream.range(0, webElementList.size()).forEach(i -> {
-      Assert.assertNotNull(webElementList.get(i).findElement(By.className("sticker")));
+      Assert.assertEquals(webElementList.get(i).findElements(By.className("sticker")).size(), 1);
     });
   }
 
