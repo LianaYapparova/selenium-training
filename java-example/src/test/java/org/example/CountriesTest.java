@@ -43,7 +43,7 @@ public class CountriesTest {
       WebElement element = driver.findElement(By.className("dataTable")).findElements(By.className("row")).get(i);
       if (Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(6)")).getText()) > 0) {
         element.findElement(By.cssSelector("td:nth-child(5) a")).click();
-        List<WebElement> webElementsTimeZone = driver.findElements(By.cssSelector(".dataTable  td:nth-child(3) input[type=hidden]"));
+        List<WebElement> webElementsTimeZone = driver.findElements(By.cssSelector(".dataTable  td:nth-child(3) [name*='zones']"));
         List<String> stringListTimeZone = webElementsTimeZone.stream().map(e -> e.getAttribute("value")).collect(Collectors.toList());
         isSorted(stringListTimeZone);
         driver.navigate().back();

@@ -33,6 +33,5 @@ public class MyFirstTest {
   @AfterClass
   public void stop() {
     driver.quit();
-//    driver = null;
   }
 }
