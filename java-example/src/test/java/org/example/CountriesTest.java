@@ -1,27 +1,16 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class CountriesTest {
-  private WebDriver driver;
-  private WebDriverWait wait;
+public class CountriesTest extends BaseTest{
 
-  @BeforeClass
-  public void start() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofMillis(100));
-  }
   @BeforeMethod
   public void login(){
     driver.get(" http://localhost/litecart/admin/");
@@ -43,8 +32,8 @@ public class CountriesTest {
       WebElement element = driver.findElement(By.className("dataTable")).findElements(By.className("row")).get(i);
       if (Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(6)")).getText()) > 0) {
         element.findElement(By.cssSelector("td:nth-child(5) a")).click();
-        List<WebElement> webElementsTimeZone = driver.findElements(By.cssSelector(".dataTable  td:nth-child(3) [name*='zones']"));
-        List<String> stringListTimeZone = webElementsTimeZone.stream().map(e -> e.getAttribute("value")).collect(Collectors.toList());
+        List<WebElement> webElementsTimeZone = driver.findElements(By.cssSelector(".dataTable  td:nth-child(3)"));
+        List<String> stringListTimeZone = webElementsTimeZone.stream().map(e -> e.getText()).collect(Collectors.toList());
         isSorted(stringListTimeZone);
         driver.navigate().back();
       }
@@ -72,9 +61,5 @@ public class CountriesTest {
   @AfterMethod
   public void logout(){
     driver.findElement(By.cssSelector("a[title=Logout]")).click();
-  }
-  @AfterClass(alwaysRun = true)
-  public void stop() {
-    driver.quit();
   }
 }

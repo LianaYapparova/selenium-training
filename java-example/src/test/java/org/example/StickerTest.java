@@ -1,31 +1,13 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class StickerTest {
-
-  private WebDriver driver;
-  private WebDriverWait wait;
-
-  @BeforeClass
-  public void start() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofMillis(100));
-  }
-
+public class StickerTest extends BaseTest{
   @Test
   public void stickerTest() {
     driver.get("http://localhost/litecart/en/");
@@ -35,8 +17,4 @@ public class StickerTest {
     });
   }
 
-  @AfterClass(alwaysRun = true)
-  public void stop() {
-    driver.quit();
-  }
 }

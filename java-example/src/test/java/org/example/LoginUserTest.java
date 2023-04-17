@@ -13,17 +13,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class LoginUserTest {
-  private WebDriver driver;
-  private WebDriverWait wait;
+public class LoginUserTest extends BaseTest {
   private static final Faker faker = new Faker();
-
-  @BeforeClass
-  public void start() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofMillis(100));
-  }
 
   @Test
   public void loginUserTest() {
@@ -53,9 +44,4 @@ public class LoginUserTest {
     driver.findElement(By.cssSelector("#box-account li:nth-child(4) a")).click();
   }
 
-
-  @AfterClass(alwaysRun = true)
-  public void stop() {
-    driver.quit();
-  }
 }

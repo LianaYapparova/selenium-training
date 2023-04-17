@@ -11,17 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class MenuAdminTest {
-  private WebDriver driver;
-  private WebDriverWait wait;
-
-  @BeforeClass
-  public void start() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofMillis(100));
-  }
-
+public class MenuAdminTest extends BaseTest{
   @Test
   public void menuAdminTest() {
     driver.get(" http://localhost/litecart/admin/");
@@ -44,11 +34,5 @@ public class MenuAdminTest {
       driver.findElements(By.cssSelector(".selected li")).get(i).click();
       driver.findElement(By.cssSelector("h1"));
     });
-  }
-
-
-  @AfterClass(alwaysRun = true)
-  public void stop() {
-    driver.quit();
   }
 }

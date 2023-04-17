@@ -1,10 +1,18 @@
-package org.example;
+package org.example.bucket.pages;
 
+import com.github.javafaker.Faker;
+import java.time.Duration;
 import java.util.stream.IntStream;
+import org.example.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class BucketProductTest extends BaseTest {
@@ -35,4 +43,5 @@ public class BucketProductTest extends BaseTest {
     wait.until(ExpectedConditions.textToBe(By.cssSelector("#cart .quantity"), String.valueOf(++counter)));
     driver.navigate().back();
   }
+
 }
